@@ -1,0 +1,6 @@
+[book]
+authors = ["realglobe, Inc."]
+language = "ja"
+multilingual = false
+src = "src"
+title = "Hec-Eye API ドキュメント"
