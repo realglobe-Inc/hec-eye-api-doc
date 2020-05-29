@@ -102,111 +102,114 @@ curl -d "${data}" -H "${header}" -X POST "${url}"
 ## データ形式
 
 API 返り値のデータ形式は、特に利用しそうな項目だけを抜粋しています。
+例として返り値を記述していますが、ランダムに生成したサンプルですのでご注意ください。
 
 ### Devices
 
-```typescript
+```json
 {
-  id: string,
-  createdAt: string,
-  name: string,
-  type: string,
+  "id": "foopnnzy8r2jx3ukr5gph9aijwj3ij7",
+  "createdAt": "2020-05-29T05:11:14.333Z",
+  "name": "TestDrone",
+  "type": "device:drone"
 }
 ```
 
-| 項目      | 説明                            |
-| --------- | ------------------------------- |
-| id        | 登録されているデバイス固有の ID |
-| createdAt | デバイスが登録された日時        |
-| name      | デバイス名                      |
-| type      | 登録されているデバイスの情報    |
+| 項目      | 説明                            | データ型        |
+| --------- | ------------------------------- | --------------- |
+| id        | 登録されているデバイス固有の ID | 文字列          |
+| createdAt | デバイスが登録された日時        | 文字列 (日付型) |
+| name      | デバイス名                      | 文字列          |
+| type      | 登録されているデバイスの情報    | 文字列          |
 
 <div style="page-break-before:always"></div>
 
 ### Beacon
 
-```typescript
+```json
 {
-  additional: {
-    user: string,
-    info: {
-      hoge: string | number,
+  "additional": {
+    "user": "John Doe",
+    "info": {
+      "foo": "dog",
+      "bar": 1618
     }
   },
-  alt: number,
-  direction: number,
-  lat: number,
-  lng: number,
-  type: string
+  "alt": 10.0,
+  "createdAt": "2020-05-29T05:11:14.333Z",
+  "direction": 187.5,
+  "lat": 35.678803,
+  "lng": 139.756263,
+  "type": "device:third-party"
 }
 ```
 
-| 項目            | 説明                                       |
-| --------------- | ------------------------------------------ |
-| additional.user | 投稿者の情報                               |
-| additional.info | デバイスで投稿したい任意の情報。(複数可能) |
-| alt             | デバイスの高度情報                         |
-| direction       | デバイスの向き                             |
-| lat             | デバイスの位置する緯度                     |
-| lng             | デバイスの位置する経度                     |
-| type            | 登録したデバイスの設定情報                 |
+| 項目            | 説明                                       | データ型              |
+| --------------- | ------------------------------------------ | --------------------- |
+| additional.user | 投稿者の情報                               | 文字列                |
+| additional.info | デバイスで投稿したい任意の情報。(複数可能) | 文字列や数字の object |
+| alt             | デバイスの高度情報                         | 数字                  |
+| createdAt       | 情報が投稿されたときの日付                 | 文字列 (日付型)       |
+| direction       | デバイスの向き (0 ~ 360 度)                | 数字                  |
+| lat             | デバイスの位置する緯度 (-180 ~ 180)        | 数字                  |
+| lng             | デバイスの位置する経度 (-90 ~ 90)          | 数字                  |
+| type            | 登録したデバイスの設定情報                 | 文字列                |
 
 <div style="page-break-before:always"></div>
 
 ### Video
 
-```typescript
- {
-  createdAt: string,
-  duration: number,
-  fileSize: number,
-  fileType: string,
-  id: string,
-  imageHeight: number,
-  imageWidth: number,
-  lat: number,
-  lng: number,
-  name: string,
-  tags: Array<string>,
-  url: string,
+```json
+{
+  "createdAt": "2020-05-29T05:11:14.333Z",
+  "duration": 60,
+  "fileSize": 6181340,
+  "fileType": "MPEG-4",
+  "imageHeight": 1080,
+  "imageWidth": 1920,
+  "lat": 35.678803,
+  "lng": 139.756263,
+  "name": "Video-9999",
+  "tags": ["foo", "bar", "baz"],
+  "url": "https://snapbox.hec-eye.jp/video-9999.mp4"
 }
 ```
 
-| 項目      | 説明                           |
-| --------- | ------------------------------ |
-| createdAt | 動画が投稿された日時           |
-| duration  | 再生時間                       |
-| fileSize  | 容量                           |
-| fileType  | 拡張子                         |
-| id        | 動画の固有 ID                  |
-| lat       | 動画が投稿された位置情報(緯度) |
-| lng       | 動画が投稿された位置情報(経度) |
-| name      | 動画につけられた名前           |
-| tags      | 関連付けされたタグ情報         |
-| url       | 動画の URL                     |
+| 項目        | 説明                            | データ型        |
+| ----------- | ------------------------------- | --------------- |
+| createdAt   | 動画が投稿された日時            | 文字列 (日付型) |
+| duration    | 再生時間 (秒)                   | 数字            |
+| fileSize    | 容量 (byte)                     | 数字            |
+| fileType    | 拡張子                          | 文字列          |
+| imageHeight | 映像の解像度 (縦)               | 数字            |
+| imageWidth  | 映像の解像度 (横)               | 数字            |
+| lat         | 動画が投稿された位置情報 (緯度) | 数字            |
+| lng         | 動画が投稿された位置情報 (経度) | 数字            |
+| name        | 動画につけられた名前            | 文字列          |
+| tags        | 関連付けされたタグ情報          | 文字列の配列    |
+| url         | 動画の URL                      | 文字列          |
 
 <div style="page-break-before:always"></div>
 
 ### Photo
 
-```typescript
+```json
 {
-  createdAt: string,
-  id: string,
-  lat: number,
-  lng: number,
-  name: string,
-  tags: Array<string>,
-  url: string,
+  "createdAt": "2020-05-29T05:11:14.333Z",
+  "lat": 35.678803,
+  "lng": 139.756263,
+  "name": "Photo-9999",
+  "tags": ["foo", "bar", "baz"],
+  "url": "https://snapbox.hec-eye.jp/Photo-9999.flv"
+}
 }
 ```
 
-| 項目      | 説明                               |
-| --------- | ---------------------------------- |
-| createdAt | 画像が投稿された日時               |
-| id        | 画像の固有 ID                      |
-| lat       | 画像が投稿された位置情報(緯度)     |
-| lng       | 画像が投稿された位置情報(経度)     |
-| name      | 画像につけられた名前               |
-| tags      | 関連付けされたタグ情報             |
-| url       | 画像の URL (domain からの相対パス) |
+| 項目      | 説明                            | データ型        |
+| --------- | ------------------------------- | --------------- |
+| createdAt | 画像が投稿された日時            | 文字列 (日付型) |
+| lat       | 画像が投稿された位置情報 (緯度) | 数字            |
+| lng       | 画像が投稿された位置情報 (経度) | 数字            |
+| name      | 画像につけられた名前            | 文字列          |
+| tags      | 関連付けされたタグ情報          | 文字列の配列    |
+| url       | 画像の URL                      | 文字列          |
