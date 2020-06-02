@@ -33,7 +33,7 @@ API トークンを取得するには、Hec-Eye に管理者としてログイ�
 
 ```sh
 # リクエスト URL
-url="${domain}/api/devices?=${apiToken}"
+url="${domain}/api/devices?token=${apiToken}"
 
 # 全デバイス情報の取得
 curl -X GET "${url}"
@@ -56,7 +56,7 @@ curl -X GET "${url}"
 
 ```sh
 # リクエスト URL
-api="api/devices/${deviceId}/beacon"
+api="api/devices/${deviceId}/beacons"
 url="${domain}/${api}?token=${apiToken}"
 
 # ビーコンの取得
@@ -70,7 +70,7 @@ curl -X GET "${url}"
 
 ```sh
 # 受け側のURL作成
-url="${domain}/api/devices/${deviceId}/beacon?token=${apiToken}"
+url="${domain}/api/devices/${deviceId}/beacons?token=${apiToken}"
 
 # 投稿したいデータ
 data='{
