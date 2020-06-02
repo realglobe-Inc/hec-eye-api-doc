@@ -219,95 +219,98 @@ curl -d &quot;${data}&quot; -H &quot;${header}&quot; -X POST &quot;${url}&quot;
 </tbody></table>
 <br/>
 <h2><a class="header" href="#データ形式" id="データ形式">データ形式</a></h2>
-<p>API 返り値のデータ形式は、特に利用しそうな項目だけを抜粋しています。</p>
+<p>API 返り値のデータ形式は、特に利用しそうな項目だけを抜粋しています。
+例として返り値を記述していますが、ランダムに生成したサンプルですのでご注意ください。</p>
 <h3><a class="header" href="#devices" id="devices">Devices</a></h3>
-<pre><code class="language-typescript">{
-  id: string,
-  createdAt: string,
-  name: string,
-  type: string,
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;foopnnzy8r2jx3ukr5gph9aijwj3ij7&quot;,
+  &quot;createdAt&quot;: &quot;2020-05-29T05:11:14.333Z&quot;,
+  &quot;name&quot;: &quot;TestDrone&quot;,
+  &quot;type&quot;: &quot;device:drone&quot;
 }
 </code></pre>
-<table><thead><tr><th>項目</th><th>説明</th></tr></thead><tbody>
-<tr><td>id</td><td>登録されているデバイス固有の ID</td></tr>
-<tr><td>createdAt</td><td>デバイスが登録された日時</td></tr>
-<tr><td>name</td><td>デバイス名</td></tr>
-<tr><td>type</td><td>登録されているデバイスの情報</td></tr>
+<table><thead><tr><th>項目</th><th>説明</th><th>データ型</th></tr></thead><tbody>
+<tr><td>id</td><td>登録されているデバイス固有の ID</td><td>文字列</td></tr>
+<tr><td>createdAt</td><td>デバイスが登録された日時</td><td>文字列 (日付型)</td></tr>
+<tr><td>name</td><td>デバイス名</td><td>文字列</td></tr>
+<tr><td>type</td><td>登録されているデバイスの情報</td><td>文字列</td></tr>
 </tbody></table>
 <div style="page-break-before:always"></div>
 <h3><a class="header" href="#beacon" id="beacon">Beacon</a></h3>
-<pre><code class="language-typescript">{
-  additional: {
-    user: string,
-    info: {
-      hoge: string | number,
+<pre><code class="language-json">{
+  &quot;additional&quot;: {
+    &quot;user&quot;: &quot;John Doe&quot;,
+    &quot;info&quot;: {
+      &quot;foo&quot;: &quot;dog&quot;,
+      &quot;bar&quot;: 1618
     }
   },
-  alt: number,
-  direction: number,
-  lat: number,
-  lng: number,
-  type: string
+  &quot;alt&quot;: 10.0,
+  &quot;createdAt&quot;: &quot;2020-05-29T05:11:14.333Z&quot;,
+  &quot;direction&quot;: 187.5,
+  &quot;lat&quot;: 35.678803,
+  &quot;lng&quot;: 139.756263,
+  &quot;type&quot;: &quot;device:third-party&quot;
 }
 </code></pre>
-<table><thead><tr><th>項目</th><th>説明</th></tr></thead><tbody>
-<tr><td>additional.user</td><td>投稿者の情報</td></tr>
-<tr><td>additional.info</td><td>デバイスで投稿したい任意の情報。(複数可能)</td></tr>
-<tr><td>alt</td><td>デバイスの高度情報</td></tr>
-<tr><td>direction</td><td>デバイスの向き</td></tr>
-<tr><td>lat</td><td>デバイスの位置する緯度</td></tr>
-<tr><td>lng</td><td>デバイスの位置する経度</td></tr>
-<tr><td>type</td><td>登録したデバイスの設定情報</td></tr>
+<table><thead><tr><th>項目</th><th>説明</th><th>データ型</th></tr></thead><tbody>
+<tr><td>additional.user</td><td>投稿者の情報</td><td>文字列</td></tr>
+<tr><td>additional.info</td><td>デバイスで投稿したい任意の情報。(複数可能)</td><td>文字列や数字の object</td></tr>
+<tr><td>alt</td><td>デバイスの高度情報</td><td>数字</td></tr>
+<tr><td>createdAt</td><td>情報が投稿されたときの日付</td><td>文字列 (日付型)</td></tr>
+<tr><td>direction</td><td>デバイスの向き (0 ~ 360 度)</td><td>数字</td></tr>
+<tr><td>lat</td><td>デバイスの位置する緯度 (-180 ~ 180)</td><td>数字</td></tr>
+<tr><td>lng</td><td>デバイスの位置する経度 (-90 ~ 90)</td><td>数字</td></tr>
+<tr><td>type</td><td>登録したデバイスの設定情報</td><td>文字列</td></tr>
 </tbody></table>
 <div style="page-break-before:always"></div>
 <h3><a class="header" href="#video" id="video">Video</a></h3>
-<pre><code class="language-typescript"> {
-  createdAt: string,
-  duration: number,
-  fileSize: number,
-  fileType: string,
-  id: string,
-  imageHeight: number,
-  imageWidth: number,
-  lat: number,
-  lng: number,
-  name: string,
-  tags: Array&lt;string&gt;,
-  url: string,
+<pre><code class="language-json">{
+  &quot;createdAt&quot;: &quot;2020-05-29T05:11:14.333Z&quot;,
+  &quot;duration&quot;: 60,
+  &quot;fileSize&quot;: 6181340,
+  &quot;fileType&quot;: &quot;MPEG-4&quot;,
+  &quot;imageHeight&quot;: 1080,
+  &quot;imageWidth&quot;: 1920,
+  &quot;lat&quot;: 35.678803,
+  &quot;lng&quot;: 139.756263,
+  &quot;name&quot;: &quot;Video-9999&quot;,
+  &quot;tags&quot;: [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;],
+  &quot;url&quot;: &quot;https://snapbox.hec-eye.jp/video-9999.mp4&quot;
 }
 </code></pre>
-<table><thead><tr><th>項目</th><th>説明</th></tr></thead><tbody>
-<tr><td>createdAt</td><td>動画が投稿された日時</td></tr>
-<tr><td>duration</td><td>再生時間</td></tr>
-<tr><td>fileSize</td><td>容量</td></tr>
-<tr><td>fileType</td><td>拡張子</td></tr>
-<tr><td>id</td><td>動画の固有 ID</td></tr>
-<tr><td>lat</td><td>動画が投稿された位置情報(緯度)</td></tr>
-<tr><td>lng</td><td>動画が投稿された位置情報(経度)</td></tr>
-<tr><td>name</td><td>動画につけられた名前</td></tr>
-<tr><td>tags</td><td>関連付けされたタグ情報</td></tr>
-<tr><td>url</td><td>動画の URL</td></tr>
+<table><thead><tr><th>項目</th><th>説明</th><th>データ型</th></tr></thead><tbody>
+<tr><td>createdAt</td><td>動画が投稿された日時</td><td>文字列 (日付型)</td></tr>
+<tr><td>duration</td><td>再生時間 (秒)</td><td>数字</td></tr>
+<tr><td>fileSize</td><td>容量 (byte)</td><td>数字</td></tr>
+<tr><td>fileType</td><td>拡張子</td><td>文字列</td></tr>
+<tr><td>imageHeight</td><td>映像の解像度 (縦)</td><td>数字</td></tr>
+<tr><td>imageWidth</td><td>映像の解像度 (横)</td><td>数字</td></tr>
+<tr><td>lat</td><td>動画が投稿された位置情報 (緯度)</td><td>数字</td></tr>
+<tr><td>lng</td><td>動画が投稿された位置情報 (経度)</td><td>数字</td></tr>
+<tr><td>name</td><td>動画につけられた名前</td><td>文字列</td></tr>
+<tr><td>tags</td><td>関連付けされたタグ情報</td><td>文字列の配列</td></tr>
+<tr><td>url</td><td>動画の URL</td><td>文字列</td></tr>
 </tbody></table>
 <div style="page-break-before:always"></div>
 <h3><a class="header" href="#photo" id="photo">Photo</a></h3>
-<pre><code class="language-typescript">{
-  createdAt: string,
-  id: string,
-  lat: number,
-  lng: number,
-  name: string,
-  tags: Array&lt;string&gt;,
-  url: string,
+<pre><code class="language-json">{
+  &quot;createdAt&quot;: &quot;2020-05-29T05:11:14.333Z&quot;,
+  &quot;lat&quot;: 35.678803,
+  &quot;lng&quot;: 139.756263,
+  &quot;name&quot;: &quot;Photo-9999&quot;,
+  &quot;tags&quot;: [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;],
+  &quot;url&quot;: &quot;https://snapbox.hec-eye.jp/Photo-9999.flv&quot;
+}
 }
 </code></pre>
-<table><thead><tr><th>項目</th><th>説明</th></tr></thead><tbody>
-<tr><td>createdAt</td><td>画像が投稿された日時</td></tr>
-<tr><td>id</td><td>画像の固有 ID</td></tr>
-<tr><td>lat</td><td>画像が投稿された位置情報(緯度)</td></tr>
-<tr><td>lng</td><td>画像が投稿された位置情報(経度)</td></tr>
-<tr><td>name</td><td>画像につけられた名前</td></tr>
-<tr><td>tags</td><td>関連付けされたタグ情報</td></tr>
-<tr><td>url</td><td>画像の URL (domain からの相対パス)</td></tr>
+<table><thead><tr><th>項目</th><th>説明</th><th>データ型</th></tr></thead><tbody>
+<tr><td>createdAt</td><td>画像が投稿された日時</td><td>文字列 (日付型)</td></tr>
+<tr><td>lat</td><td>画像が投稿された位置情報 (緯度)</td><td>数字</td></tr>
+<tr><td>lng</td><td>画像が投稿された位置情報 (経度)</td><td>数字</td></tr>
+<tr><td>name</td><td>画像につけられた名前</td><td>文字列</td></tr>
+<tr><td>tags</td><td>関連付けされたタグ情報</td><td>文字列の配列</td></tr>
+<tr><td>url</td><td>画像の URL</td><td>文字列</td></tr>
 </tbody></table>
 
                     </main>
