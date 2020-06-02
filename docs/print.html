@@ -150,54 +150,50 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#1-入門" id="1-入門">1. 入門</a></h1>
-<p>この document では Hec-Eye (Mapper) のデバイス連携に関する API 利用方法のサンプルについて記述したものです．</p>
-<h2><a class="header" href="#api-利用方法のサンプル" id="api-利用方法のサンプル">api 利用方法のサンプル</a></h2>
+<p>Hec-Eye のデバイス連携 API の利用方法を解説します。</p>
+<h2><a class="header" href="#api-利用方法のサンプル" id="api-利用方法のサンプル">API 利用方法のサンプル</a></h2>
 <h3><a class="header" href="#共通設定" id="共通設定">共通設定</a></h3>
-<p>この document 内では， api から各情報の request 方法についていくつかサンプルを例示します．
-その時，共通した設定を行いますので以下を参考にしてください．</p>
-<p>また，各変数については適宜環境に合わせて変更をしてください．</p>
-<p>例</p>
+<p>API の共通設定として必要な値は、Hec-Eye のドメイン、API トークン、デバイス ID です。</p>
+<p>例：</p>
 <pre><code class="language-sh"># 受け側の情報
 domain=&quot;https://sandbox.hec-eye.jp&quot;
 apiToken=&quot;hogehoge&quot;
 deviceId=&quot;fugafuga&quot;
 </code></pre>
-<p><code>apiToken</code> と <code>deviceId</code> は，取得する手続きが必要です．
-以下を参考にしてください．</p>
-<h4><a class="header" href="#apiトークンの取得方法" id="apiトークンの取得方法">APIトークンの取得方法</a></h4>
-<p>APIのトークンについては，Hec-Eye に管理者権限でログインをし，取得しなければなりません．
-ログイン後に「アプリ情報画面」を開いて、下にある「開発者向け情報」を開くと表示されます．(画像の赤丸部分を参考にしてください．)</p>
+<p><code>apiToken</code> と <code>deviceId</code> は以下のように取得します。</p>
+<h4><a class="header" href="#api-トークンの取得方法" id="api-トークンの取得方法">API トークンの取得方法</a></h4>
+<p>API トークンを取得するには、Hec-Eye に管理者としてログインします。</p>
+<p>「アプリ情報画面」の下部にある「開発者向け情報」に API トークンが表示されます。(画像の赤丸部分)</p>
 <p><img src="./images/api_token.png" alt="APIトークン" /></p>
 <h4><a class="header" href="#deviceid-の取得方法" id="deviceid-の取得方法">deviceId の取得方法</a></h4>
-<p>次のコマンドで，<code>domain</code> の Hec-Eye に登録されているデバイス全ての情報を取得出来ます．</p>
-<pre><code class="language-sh"># 受け側のURL作成
+<p>デバイス一覧のエンドポイントから Hec-Eye の全デバイス情報を取得できます。</p>
+<pre><code class="language-sh"># リクエスト URL
 url=&quot;${domain}/api/devices?=${apiToken}&quot;
 
-# jsonの取得
+# 全デバイス情報の取得
 curl -X GET &quot;${url}&quot;
 </code></pre>
-<p>返ってくる JSON 形式のデータに，それぞれのデバイスの詳細な情報が記されています．
-返り値については，後述する <a href="chapter_1.html#devices">データの形式</a> を参考にしてください．</p>
-<p>返り値にある目的のデバイスのデータから，デバイス固有の ID を利用してください．</p>
+<p>返ってくる JSON データに、それぞれのデバイスの情報が記されています。
+デバイス情報の形式は、後述の <a href="chapter_1.html#devices">データの形式</a> を参考にしてください。</p>
+<p>デバイス一覧情報から使用したいデバイス ID を利用してください。</p>
 <h3><a class="header" href="#get-のサンプル" id="get-のサンプル">GET のサンプル</a></h3>
-<p>この document では，各デバイスから投稿した</p>
+<p>このセクションでは、各デバイスから投稿した</p>
 <ul>
-<li>beacon</li>
-<li>photo</li>
-<li>video</li>
+<li>ビーコン（位置情報）</li>
+<li>写真</li>
+<li>動画</li>
 </ul>
-<p>の情報について，リクエスト方法について記述します．</p>
-<pre><code class="language-sh"># 受け側のURL作成
+<p>の情報を取得する方法を記述します。</p>
+<pre><code class="language-sh"># リクエスト URL
 api=&quot;api/devices/${deviceId}/beacon&quot;
 url=&quot;${domain}/${api}?token=${apiToken}&quot;
 
-# jsonの取得
+# ビーコンの取得
 curl -X GET &quot;${url}&quot;
 </code></pre>
-<p>上記サンプルの <code>api</code> 記述部分については， request したいものに適宜対応させ変更してください．
-( 詳細については，後述の <a href="chapter_1.html#api-%e4%b8%80%e8%a6%a7">api 一覧</a> にあります．)</p>
+<p>上記サンプルの <code>api</code> 記述部分については、リクエストしたいものに適宜対応させ変更してください。
+( 詳細については、後述の <a href="chapter_1.html#api-%e4%b8%80%e8%a6%a7">api 一覧</a> にあります。)</p>
 <h3><a class="header" href="#post-のサンプル" id="post-のサンプル">POST のサンプル</a></h3>
-<p>Hec-Eye</p>
 <pre><code class="language-sh"># 受け側のURL作成
 url=&quot;${domain}/api/devices/${deviceId}/beacon?token=${apiToken}&quot;
 
@@ -214,7 +210,7 @@ header=&quot;Content-Type: application/json&quot;
 # jsonの取得
 curl -d &quot;${data}&quot; -H &quot;${header}&quot; -X POST &quot;${url}&quot;
 </code></pre>
-<h3><a class="header" href="#api-一覧" id="api-一覧">api 一覧</a></h3>
+<h3><a class="header" href="#api-一覧" id="api-一覧">API 一覧</a></h3>
 <table><thead><tr><th>Url</th><th>Verb</th><th>説明</th></tr></thead><tbody>
 <tr><td><code>/api/devices</code></td><td>GET</td><td>Device の一覧習得</td></tr>
 <tr><td><code>/api/devices/${deviceId}</code></td><td>GET</td><td>Device の習得</td></tr>
@@ -224,18 +220,16 @@ curl -d &quot;${data}&quot; -H &quot;${header}&quot; -X POST &quot;${url}&quot;
 <tr><td><code>/api/devices/${deviceId}/beacons</code></td><td>POST</td><td>設定した Device のビーコンを投稿</td></tr>
 </tbody></table>
 <br/>
-<h2><a class="header" href="#データの形式" id="データの形式">データの形式</a></h2>
-<p>データの形式については，特段利用するであろう項目について抜き出しています．
-実際には後述する項目よりも多くのデータが返り値として渡されていますので，より詳細に知りたい場合は上記サンプルを実行の上で参照してください．</p>
+<h2><a class="header" href="#データ形式" id="データ形式">データ形式</a></h2>
+<p>API 返り値のデータ形式は、特に利用しそうな項目だけを抜粋しています。</p>
 <h3><a class="header" href="#devices" id="devices">Devices</a></h3>
 <pre><code class="language-typescript">{
   id: string,
   createdAt: string,
   name: string,
   type: string,
-},
+}
 </code></pre>
-<p>各項目の詳細について</p>
 <table><thead><tr><th>項目</th><th>説明</th></tr></thead><tbody>
 <tr><td>id</td><td>登録されているデバイス固有の ID</td></tr>
 <tr><td>createdAt</td><td>デバイスが登録された日時</td></tr>
@@ -258,10 +252,9 @@ curl -d &quot;${data}&quot; -H &quot;${header}&quot; -X POST &quot;${url}&quot;
   type: string
 }
 </code></pre>
-<p>各項目の詳細について</p>
 <table><thead><tr><th>項目</th><th>説明</th></tr></thead><tbody>
 <tr><td>additional.user</td><td>投稿者の情報</td></tr>
-<tr><td>additional.info</td><td>デバイスで投稿したい任意の情報．(複数可能)</td></tr>
+<tr><td>additional.info</td><td>デバイスで投稿したい任意の情報。(複数可能)</td></tr>
 <tr><td>alt</td><td>デバイスの高度情報</td></tr>
 <tr><td>direction</td><td>デバイスの向き</td></tr>
 <tr><td>lat</td><td>デバイスの位置する緯度</td></tr>
@@ -285,7 +278,6 @@ curl -d &quot;${data}&quot; -H &quot;${header}&quot; -X POST &quot;${url}&quot;
   url: string,
 }
 </code></pre>
-<p>各項目の詳細について</p>
 <table><thead><tr><th>項目</th><th>説明</th></tr></thead><tbody>
 <tr><td>createdAt</td><td>動画が投稿された日時</td></tr>
 <tr><td>duration</td><td>再生時間</td></tr>
@@ -310,7 +302,6 @@ curl -d &quot;${data}&quot; -H &quot;${header}&quot; -X POST &quot;${url}&quot;
   url: string,
 }
 </code></pre>
-<p>各項目の詳細について</p>
 <table><thead><tr><th>項目</th><th>説明</th></tr></thead><tbody>
 <tr><td>createdAt</td><td>画像が投稿された日時</td></tr>
 <tr><td>id</td><td>画像の固有 ID</td></tr>
