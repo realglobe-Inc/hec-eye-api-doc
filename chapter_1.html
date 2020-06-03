@@ -1,0 +1,367 @@
+<!DOCTYPE HTML>
+<html lang="ja" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>1. 入門 - Hec-Eye API ドキュメント</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html" class="active"><strong aria-hidden="true">1.</strong> 入門</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Hec-Eye API ドキュメント</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#1-入門" id="1-入門">1. 入門</a></h1>
+<p>Hec-Eye のデバイス連携 API の利用方法を解説します。</p>
+<h2><a class="header" href="#api-利用方法のサンプル" id="api-利用方法のサンプル">API 利用方法のサンプル</a></h2>
+<h3><a class="header" href="#共通設定" id="共通設定">共通設定</a></h3>
+<p>API の共通設定として必要な値は、Hec-Eye のドメイン、API トークン、デバイス ID です。</p>
+<p>例：</p>
+<pre><code class="language-sh"># 受け側の情報
+domain=&quot;https://sandbox.hec-eye.jp&quot;
+apiToken=&quot;hogehoge&quot;
+deviceId=&quot;fugafuga&quot;
+</code></pre>
+<p><code>apiToken</code> と <code>deviceId</code> は以下のように取得します。</p>
+<h4><a class="header" href="#api-トークンの取得方法" id="api-トークンの取得方法">API トークンの取得方法</a></h4>
+<p>API トークンを取得するには、Hec-Eye に管理者としてログインします。</p>
+<p>「アプリ情報画面」の下部にある「開発者向け情報」に API トークンが表示されます。(画像の赤丸部分)</p>
+<p><img src="./images/api_token.png" alt="APIトークン" /></p>
+<h4><a class="header" href="#deviceid-の取得方法" id="deviceid-の取得方法">deviceId の取得方法</a></h4>
+<p>デバイス一覧のエンドポイントから Hec-Eye の全デバイス情報を取得できます。</p>
+<pre><code class="language-sh"># リクエスト URL
+url=&quot;${domain}/api/devices?token=${apiToken}&quot;
+
+# 全デバイス情報の取得
+curl -X GET &quot;${url}&quot;
+</code></pre>
+<p>返ってくる JSON データに、それぞれのデバイスの情報が記されています。
+デバイス情報の形式は、後述の <a href="#devices">データの形式</a> を参考にしてください。</p>
+<p>デバイス一覧情報から使用したいデバイス ID を利用してください。</p>
+<h3><a class="header" href="#get-のサンプル" id="get-のサンプル">GET のサンプル</a></h3>
+<p>このセクションでは、各デバイスから投稿した</p>
+<ul>
+<li>ビーコン（位置情報）</li>
+<li>写真</li>
+<li>動画</li>
+</ul>
+<p>の情報を取得する方法を記述します。</p>
+<pre><code class="language-sh"># リクエスト URL
+api=&quot;api/devices/${deviceId}/beacons&quot;
+url=&quot;${domain}/${api}?token=${apiToken}&quot;
+
+# ビーコンの取得
+curl -X GET &quot;${url}&quot;
+</code></pre>
+<p>上記サンプルの <code>api</code> 記述部分については、リクエストしたいものに適宜対応させ変更してください。
+( 詳細については、後述の <a href="#api-%e4%b8%80%e8%a6%a7">api 一覧</a> にあります。)</p>
+<h3><a class="header" href="#post-のサンプル" id="post-のサンプル">POST のサンプル</a></h3>
+<pre><code class="language-sh"># 受け側のURL作成
+url=&quot;${domain}/api/devices/${deviceId}/beacons?token=${apiToken}&quot;
+
+# 投稿したいデータ
+data='{
+  &quot;lat&quot;:35.70161,
+  &quot;lng&quot;:139.75319,
+  &quot;name&quot;:&quot;Sample from API&quot;,
+}'
+
+# option
+header=&quot;Content-Type: application/json&quot;
+
+# jsonの取得
+curl -d &quot;${data}&quot; -H &quot;${header}&quot; -X POST &quot;${url}&quot;
+</code></pre>
+<h3><a class="header" href="#api-一覧" id="api-一覧">API 一覧</a></h3>
+<table><thead><tr><th>Url</th><th>Verb</th><th>説明</th></tr></thead><tbody>
+<tr><td><code>/api/devices</code></td><td>GET</td><td>Device の一覧習得</td></tr>
+<tr><td><code>/api/devices/${deviceId}</code></td><td>GET</td><td>Device の習得</td></tr>
+<tr><td><code>/api/devices/${deviceId}/beacons</code></td><td>GET</td><td>Device の投稿したビーコンを取得</td></tr>
+<tr><td><code>/api/devices/${deviceId}/photos</code></td><td>GET</td><td>Device の投稿した画像を取得</td></tr>
+<tr><td><code>/api/devices/${deviceId}/videos</code></td><td>GET</td><td>Device の投稿した写真を取得</td></tr>
+<tr><td><code>/api/devices/${deviceId}/beacons</code></td><td>POST</td><td>設定した Device のビーコンを投稿</td></tr>
+</tbody></table>
+<br/>
+<h2><a class="header" href="#データ形式" id="データ形式">データ形式</a></h2>
+<p>API 返り値のデータ形式は、特に利用しそうな項目だけを抜粋しています。
+例として返り値を記述していますが、ランダムに生成したサンプルですのでご注意ください。</p>
+<h3><a class="header" href="#devices" id="devices">Devices</a></h3>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;foopnnzy8r2jx3ukr5gph9aijwj3ij7&quot;,
+  &quot;createdAt&quot;: &quot;2020-05-29T05:11:14.333Z&quot;,
+  &quot;name&quot;: &quot;TestDrone&quot;,
+  &quot;type&quot;: &quot;device:drone&quot;
+}
+</code></pre>
+<table><thead><tr><th>項目</th><th>説明</th><th>データ型</th></tr></thead><tbody>
+<tr><td>id</td><td>登録されているデバイス固有の ID</td><td>文字列</td></tr>
+<tr><td>createdAt</td><td>デバイスが登録された日時</td><td>文字列 (日付型)</td></tr>
+<tr><td>name</td><td>デバイス名</td><td>文字列</td></tr>
+<tr><td>type</td><td>登録されているデバイスの情報</td><td>文字列</td></tr>
+</tbody></table>
+<div style="page-break-before:always"></div>
+<h3><a class="header" href="#beacon" id="beacon">Beacon</a></h3>
+<pre><code class="language-json">{
+  &quot;additional&quot;: {
+    &quot;user&quot;: &quot;John Doe&quot;,
+    &quot;info&quot;: {
+      &quot;foo&quot;: &quot;dog&quot;,
+      &quot;bar&quot;: 1618
+    }
+  },
+  &quot;alt&quot;: 10.0,
+  &quot;createdAt&quot;: &quot;2020-05-29T05:11:14.333Z&quot;,
+  &quot;direction&quot;: 187.5,
+  &quot;lat&quot;: 35.678803,
+  &quot;lng&quot;: 139.756263,
+  &quot;type&quot;: &quot;device:third-party&quot;
+}
+</code></pre>
+<table><thead><tr><th>項目</th><th>説明</th><th>データ型</th></tr></thead><tbody>
+<tr><td>additional.user</td><td>投稿者の情報</td><td>文字列</td></tr>
+<tr><td>additional.info</td><td>デバイスで投稿したい任意の情報。(複数可能)</td><td>文字列や数字の object</td></tr>
+<tr><td>alt</td><td>デバイスの高度情報</td><td>数字</td></tr>
+<tr><td>createdAt</td><td>情報が投稿されたときの日付</td><td>文字列 (日付型)</td></tr>
+<tr><td>direction</td><td>デバイスの向き (0 ~ 360 度)</td><td>数字</td></tr>
+<tr><td>lat</td><td>デバイスの位置する緯度 (-180 ~ 180)</td><td>数字</td></tr>
+<tr><td>lng</td><td>デバイスの位置する経度 (-90 ~ 90)</td><td>数字</td></tr>
+<tr><td>type</td><td>登録したデバイスの設定情報</td><td>文字列</td></tr>
+</tbody></table>
+<div style="page-break-before:always"></div>
+<h3><a class="header" href="#video" id="video">Video</a></h3>
+<pre><code class="language-json">{
+  &quot;createdAt&quot;: &quot;2020-05-29T05:11:14.333Z&quot;,
+  &quot;duration&quot;: 60,
+  &quot;fileSize&quot;: 6181340,
+  &quot;fileType&quot;: &quot;MPEG-4&quot;,
+  &quot;imageHeight&quot;: 1080,
+  &quot;imageWidth&quot;: 1920,
+  &quot;lat&quot;: 35.678803,
+  &quot;lng&quot;: 139.756263,
+  &quot;name&quot;: &quot;Video-9999&quot;,
+  &quot;tags&quot;: [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;],
+  &quot;url&quot;: &quot;https://snapbox.hec-eye.jp/video-9999.mp4&quot;
+}
+</code></pre>
+<table><thead><tr><th>項目</th><th>説明</th><th>データ型</th></tr></thead><tbody>
+<tr><td>createdAt</td><td>動画が投稿された日時</td><td>文字列 (日付型)</td></tr>
+<tr><td>duration</td><td>再生時間 (秒)</td><td>数字</td></tr>
+<tr><td>fileSize</td><td>容量 (byte)</td><td>数字</td></tr>
+<tr><td>fileType</td><td>拡張子</td><td>文字列</td></tr>
+<tr><td>imageHeight</td><td>映像の解像度 (縦)</td><td>数字</td></tr>
+<tr><td>imageWidth</td><td>映像の解像度 (横)</td><td>数字</td></tr>
+<tr><td>lat</td><td>動画が投稿された位置情報 (緯度)</td><td>数字</td></tr>
+<tr><td>lng</td><td>動画が投稿された位置情報 (経度)</td><td>数字</td></tr>
+<tr><td>name</td><td>動画につけられた名前</td><td>文字列</td></tr>
+<tr><td>tags</td><td>関連付けされたタグ情報</td><td>文字列の配列</td></tr>
+<tr><td>url</td><td>動画の URL</td><td>文字列</td></tr>
+</tbody></table>
+<div style="page-break-before:always"></div>
+<h3><a class="header" href="#photo" id="photo">Photo</a></h3>
+<pre><code class="language-json">{
+  &quot;createdAt&quot;: &quot;2020-05-29T05:11:14.333Z&quot;,
+  &quot;lat&quot;: 35.678803,
+  &quot;lng&quot;: 139.756263,
+  &quot;name&quot;: &quot;Photo-9999&quot;,
+  &quot;tags&quot;: [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;],
+  &quot;url&quot;: &quot;https://snapbox.hec-eye.jp/Photo-9999.flv&quot;
+}
+}
+</code></pre>
+<table><thead><tr><th>項目</th><th>説明</th><th>データ型</th></tr></thead><tbody>
+<tr><td>createdAt</td><td>画像が投稿された日時</td><td>文字列 (日付型)</td></tr>
+<tr><td>lat</td><td>画像が投稿された位置情報 (緯度)</td><td>数字</td></tr>
+<tr><td>lng</td><td>画像が投稿された位置情報 (経度)</td><td>数字</td></tr>
+<tr><td>name</td><td>画像につけられた名前</td><td>文字列</td></tr>
+<tr><td>tags</td><td>関連付けされたタグ情報</td><td>文字列の配列</td></tr>
+<tr><td>url</td><td>画像の URL</td><td>文字列</td></tr>
+</tbody></table>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
